@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import MarkdownEditor from './MarkdownEditor'
 import {
   Memo,
   MemoFormData,
@@ -170,26 +171,23 @@ export default function MemoForm({
 
             {/* 내용 */}
             <div>
-              <label
-                htmlFor="content"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                내용 *
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                내용 * (마크다운 지원)
               </label>
-              <textarea
-                id="content"
+              <MarkdownEditor
                 value={formData.content}
-                onChange={e =>
+                onChange={(value) =>
                   setFormData(prev => ({
                     ...prev,
-                    content: e.target.value,
+                    content: value,
                   }))
                 }
-                className="placeholder-gray-400 text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-                placeholder="메모 내용을 입력하세요"
-                rows={8}
-                required
+                height={300}
+                placeholder="마크다운으로 메모를 작성하세요..."
               />
+              {!formData.content.trim() && (
+                <p className="text-red-500 text-sm mt-1">내용을 입력해주세요.</p>
+              )}
             </div>
 
             {/* 태그 */}
