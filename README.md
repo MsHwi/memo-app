@@ -10,6 +10,8 @@ LocalStorage 기반의 완전한 CRUD 기능을 갖춘 메모 앱으로, MCP 연
 - 📂 카테고리별 메모 분류 (개인, 업무, 학습, 아이디어, 기타)
 - 🏷️ 태그 시스템으로 메모 태깅
 - 🔍 제목, 내용, 태그 기반 실시간 검색
+- 📝 **마크다운 편집기** - 실시간 프리뷰 지원
+- 📋 **마크다운 뷰어** - 저장된 메모의 마크다운 렌더링
 - 📱 반응형 디자인 (모바일, 태블릿, 데스크톱)
 - 💾 LocalStorage 기반 데이터 저장 (오프라인 지원)
 - 🎨 모던한 UI/UX with Tailwind CSS
@@ -19,6 +21,7 @@ LocalStorage 기반의 완전한 CRUD 기능을 갖춘 메모 앱으로, MCP 연
 - **Framework**: Next.js 15.4.4 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
+- **Markdown**: @uiw/react-md-editor (편집기 + 뷰어)
 - **Storage**: LocalStorage
 - **State Management**: React Hooks (useState, useEffect, useMemo)
 - **Package Manager**: npm

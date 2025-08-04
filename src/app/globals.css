@@ -39,3 +39,84 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* MDEditor 커스터마이징 */
+.w-md-editor {
+  background-color: transparent !important;
+}
+
+.w-md-editor-text-container .w-md-editor-text {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  font-family: inherit !important;
+}
+
+.w-md-editor-preview {
+  background-color: #f9fafb !important;
+}
+
+.wmde-markdown {
+  background-color: transparent !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.wmde-markdown h1 {
+  font-size: 1.5em;
+}
+
+.wmde-markdown h2 {
+  font-size: 1.3em;
+}
+
+.wmde-markdown h3 {
+  font-size: 1.2em;
+}
+
+.wmde-markdown p {
+  margin-bottom: 1em;
+}
+
+.wmde-markdown ul,
+.wmde-markdown ol {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.wmde-markdown blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1em;
+  margin: 1em 0;
+  color: #6b7280;
+}
+
+.wmde-markdown code {
+  background-color: #f3f4f6;
+  padding: 0.125em 0.25em;
+  border-radius: 0.25em;
+  font-size: 0.875em;
+}
+
+.wmde-markdown pre {
+  background-color: #f3f4f6;
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.wmde-markdown pre code {
+  background-color: transparent;
+  padding: 0;
+}

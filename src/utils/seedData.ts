@@ -62,6 +62,60 @@ export const sampleMemos: Memo[] = [
     createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(), // 20일 전
     updatedAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(), // 12일 전
   },
+  {
+    id: '7',
+    title: '마크다운 기능 테스트',
+    content: `# 마크다운 문법 가이드
+
+## 제목 (Headers)
+\`#\`부터 \`######\`까지 사용 가능합니다.
+
+## 텍스트 스타일
+- **굵게** 또는 __굵게__
+- *기울임* 또는 _기울임_
+- ~~취소선~~
+- \`인라인 코드\`
+
+## 목록 (Lists)
+### 순서 없는 목록
+- 첫 번째 항목
+- 두 번째 항목
+  - 하위 항목
+  - 또 다른 하위 항목
+
+### 순서 있는 목록
+1. 첫 번째
+2. 두 번째
+3. 세 번째
+
+## 링크와 이미지
+[링크 텍스트](https://example.com)
+
+## 인용문
+> 이것은 인용문입니다.
+> 여러 줄로 작성할 수 있습니다.
+
+## 코드 블록
+\`\`\`javascript
+function hello() {
+  console.log("Hello, World!");
+}
+\`\`\`
+
+## 표 (Tables)
+| 이름 | 나이 | 직업 |
+|------|------|------|
+| 홍길동 | 30 | 개발자 |
+| 김영희 | 25 | 디자이너 |
+
+---
+
+이것은 구분선입니다.`,
+    category: 'study',
+    tags: ['마크다운', '문법', '가이드'],
+    createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(), // 1시간 전
+    updatedAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+  },
 ]
 
 export const seedSampleData = () => {

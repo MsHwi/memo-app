@@ -2,13 +2,30 @@
 
 import { Memo, MEMO_CATEGORIES } from '@/types/memo'
 
+// 마크다운 텍스트를 일반 텍스트로 변환하는 간단한 함수
+const stripMarkdown = (markdown: string): string => {
+  return markdown
+    .replace(/#{1,6}\s+/g, '') // 제목 마크다운 제거
+    .replace(/\*\*(.*?)\*\*/g, '$1') // 볼드 제거
+    .replace(/\*(.*?)\*/g, '$1') // 이탤릭 제거
+    .replace(/~~(.*?)~~/g, '$1') // 취소선 제거
+    .replace(/`(.*?)`/g, '$1') // 인라인 코드 제거
+    .replace(/```[\s\S]*?```/g, '[코드 블록]') // 코드 블록을 [코드 블록]으로 대체
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // 링크 텍스트만 남기기
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '[이미지: $1]') // 이미지를 [이미지: alt] 형태로 변환
+    .replace(/\n\s*\n/g, ' ') // 여러 줄바꿈을 스페이스로 변환
+    .replace(/\n/g, ' ') // 단일 줄바꿈을 스페이스로 변환
+    .trim()
+}
+
 interface MemoItemProps {
   memo: Memo
   onEdit: (memo: Memo) => void
   onDelete: (id: string) => void
+  onView: (memo: Memo) => void
 }
 
-export default function MemoItem({ memo, onEdit, onDelete }: MemoItemProps) {
+export default function MemoItem({ memo, onEdit, onDelete, onView }: MemoItemProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('ko-KR', {
@@ -32,7 +49,10 @@ export default function MemoItem({ memo, onEdit, onDelete }: MemoItemProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+    <div 
+      className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+      onClick={() => onView(memo)}
+    >
       {/* 헤더 */}
       <div className="flex justify-between items-start mb-3">
         <div className="flex-1">
@@ -55,7 +75,10 @@ export default function MemoItem({ memo, onEdit, onDelete }: MemoItemProps) {
         {/* 액션 버튼 */}
         <div className="flex gap-2 ml-4">
           <button
-            onClick={() => onEdit(memo)}
+            onClick={(e) => {
+              e.stopPropagation()
+              onEdit(memo)
+            }}
             className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
             title="편집"
           >
@@ -74,7 +97,8 @@ export default function MemoItem({ memo, onEdit, onDelete }: MemoItemProps) {
             </svg>
           </button>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation()
               if (window.confirm('정말로 이 메모를 삭제하시겠습니까?')) {
                 onDelete(memo.id)
               }
@@ -102,7 +126,7 @@ export default function MemoItem({ memo, onEdit, onDelete }: MemoItemProps) {
       {/* 내용 */}
       <div className="mb-4">
         <p className="text-gray-700 text-sm leading-relaxed line-clamp-3">
-          {memo.content}
+          {stripMarkdown(memo.content)}
         </p>
       </div>
 
